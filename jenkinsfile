@@ -1,11 +1,19 @@
-pipeline {
-    agent any
+node {
+ 	// Clean workspace before doing anything
+    deleteDir()
 
-    stages {
-        stage('Build') {
-            steps {
-                sh 'make'
-            }
+    try {
+        stage ('Clone') {
+        	checkout scm
         }
+        stage ('Build') {
+        	sh "make"
+        }
+      	stage ('Deploy') {
+            sh "echo 'shell scripts to deploy to server...'"
+      	}
+    } catch (err) {
+        currentBuild.result = 'FAILED'
+        throw err
     }
 }
