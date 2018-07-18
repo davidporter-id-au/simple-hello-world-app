@@ -1,4 +1,4 @@
-node ("docker"){
+node ("ecs"){
  	// Clean workspace before doing anything
     deleteDir()
 
