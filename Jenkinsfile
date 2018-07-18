@@ -1,7 +1,6 @@
-node {
+node ("docker"){
  	// Clean workspace before doing anything
     deleteDir()
-    agent docker
 
     try {
         stage ('Clone') {
