@@ -1,6 +1,7 @@
 node ("ecs"){
   withEnv(['GOPATH=' + pwd()]) {
-    withDir("src/app"){
+    sh "mkdir -p src/app"
+    dir("src/app"){
       stage ('Clone') {
         checkout scm
        }
