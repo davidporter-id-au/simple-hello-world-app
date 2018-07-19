@@ -1,7 +1,7 @@
 node ("ecs"){
- 
-   try {
-       stage ('Clone') {
+  withEnv(['GOPATH=' + pwd()]) {
+    withDir("src/app"){
+      stage ('Clone') {
         checkout scm
        }
        stage ('Build') {
@@ -10,9 +10,7 @@ node ("ecs"){
       stage ('Deploy') {
            sh "echo 'shell scripts to deploy to server...'"
       }
-   } catch (err) {
-       currentBuild.result = 'FAILED'
-       throw err
-   }
+    }
+  }
 }
 
